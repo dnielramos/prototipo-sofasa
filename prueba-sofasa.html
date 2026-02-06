@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOFASA | Project Management Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        sofasa: {
+                            900: '#0f172a', // Fondo principal
+                            800: '#1e293b', // Fondo tarjetas
+                            700: '#334155', // Bordes
+                            accent: '#3b82f6', // Azul corporativo
+                            success: '#10b981',
+                            warning: '#f59e0b',
+                            danger: '#ef4444'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #09090b; color: #e4e4e7; }
+        
+        /* Animaciones para el Drawer */
+        .drawer-enter { transform: translateX(100%); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .drawer-open { transform: translateX(0); }
+        .backdrop { opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+        .backdrop.open { opacity: 1; pointer-events: auto; }
+
+        /* Estilo sutil de scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #18181b; }
+        ::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #52525b; }
+    </style>
+</head>
+<body class="h-screen flex flex-col overflow-hidden">
+
+    <header class="h-16 border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-md flex items-center justify-between px-6 z-20">
+        <div class="flex items-center gap-4">
+            <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                <i class="ph-bold ph-squares-four text-white"></i>
+            </div>
+            <div>
+                <h1 class="text-sm font-bold tracking-wide text-white">SOFASA <span class="text-zinc-500 font-normal">| MANAGEMENT</span></h1>
+                <p class="text-xs text-zinc-400">Sistema de Gestión Integral</p>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-3 bg-zinc-900 border border-zinc-800 rounded-full px-1 p-1">
+            <button class="px-4 py-1.5 text-xs font-medium bg-zinc-800 text-white rounded-full shadow-sm border border-zinc-700">
+                Planta Ensamble Duster
+            </button>
+            <div class="h-4 w-px bg-zinc-700"></div>
+            <button class="px-4 py-1.5 text-xs font-medium text-zinc-400 hover:text-white transition-colors flex items-center gap-2">
+                <i class="ph ph-calendar-blank"></i> Febrero 2026
+            </button>
+        </div>
+
+        <div class="flex items-center gap-4">
+            <div class="text-right hidden md:block">
+                <p class="text-xs font-medium text-white">Ing. Admin</p>
+                <p class="text-[10px] text-zinc-500">Super Admin</p>
+            </div>
+            <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-blue-500 to-purple-600 border-2 border-zinc-900"></div>
+        </div>
+    </header>
+
+    <main class="flex-1 flex overflow-hidden">
+        
+        <aside class="w-16 border-r border-zinc-800 flex flex-col items-center py-6 gap-6 bg-zinc-950">
+            <button class="p-2 rounded-xl bg-blue-600/10 text-blue-500"><i class="ph-fill ph-chart-pie-slice text-xl"></i></button>
+            <button class="p-2 rounded-xl text-zinc-500 hover:text-zinc-300 hover:bg-zinc-900 transition"><i class="ph ph-users text-xl"></i></button>
+            <button class="p-2 rounded-xl text-zinc-500 hover:text-zinc-300 hover:bg-zinc-900 transition"><i class="ph ph-files text-xl"></i></button>
+            <div class="flex-1"></div>
+            <button class="p-2 rounded-xl text-zinc-500 hover:text-red-400 hover:bg-red-900/10 transition"><i class="ph ph-sign-out text-xl"></i></button>
+        </aside>
+
+        <div class="flex-1 overflow-y-auto p-8 relative">
+            
+            <div class="max-w-7xl mx-auto">
+                <div class="flex justify-between items-end mb-8">
+                    <div>
+                        <h2 class="text-2xl font-semibold text-white">Resumen Mensual</h2>
+                        <p class="text-sm text-zinc-400 mt-1">Gestione las métricas operativas y de RRHH para el periodo actual.</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <div class="px-3 py-1 rounded-full border border-zinc-800 bg-zinc-900 text-xs text-zinc-400 flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Sistema en línea
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[160px]" id="kpi-grid">
+                    </div>
+            </div>
+
+        </div>
+    </main>
+
+    <div id="drawer-backdrop" class="backdrop fixed inset-0 bg-black/60 backdrop-blur-sm z-40" onclick="closeDrawer()"></div>
+    
+    <div id="drawer-panel" class="drawer-enter fixed top-0 right-0 h-full w-full md:w-[480px] bg-zinc-900 border-l border-zinc-800 shadow-2xl z-50 flex flex-col">
+        
+        <div class="h-16 border-b border-zinc-800 flex items-center justify-between px-6 bg-zinc-900">
+            <div>
+                <h3 id="drawer-title" class="text-lg font-semibold text-white">Titulo Formulario</h3>
+                <p class="text-xs text-zinc-400">Editando datos de Febrero 2026</p>
+            </div>
+            <button onclick="closeDrawer()" class="p-2 rounded-full hover:bg-zinc-800 text-zinc-400 transition">
+                <i class="ph ph-x text-lg"></i>
+            </button>
+        </div>
+
+        <div class="flex-1 overflow-y-auto p-6 space-y-6" id="drawer-content">
+            <div class="space-y-4">
+                <div class="group">
+                    <label class="block text-xs font-medium text-zinc-500 mb-1 group-focus-within:text-blue-500 transition-colors">TOTAL PERSONAL ACTIVO</label>
+                    <input type="number" class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all placeholder-zinc-700" placeholder="Ej. 350">
+                </div>
+
+                <div class="group">
+                    <label class="block text-xs font-medium text-zinc-500 mb-1 group-focus-within:text-blue-500 transition-colors">OBSERVACIONES / DETALLES</label>
+                    <textarea rows="4" class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all placeholder-zinc-700" placeholder="Ingrese detalles relevantes..."></textarea>
+                </div>
+
+                <div class="p-4 rounded-lg border border-dashed border-zinc-800 bg-zinc-950/50">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-xs font-medium text-zinc-400">Desglose (Array)</span>
+                        <button class="text-xs text-blue-400 hover:text-blue-300 font-medium">+ Agregar Fila</button>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="flex gap-2">
+                            <input type="text" value="Enfermedad General" class="flex-1 bg-zinc-900 border border-zinc-800 rounded px-3 py-1.5 text-xs text-white" readonly>
+                            <input type="number" value="8" class="w-16 bg-zinc-900 border border-zinc-800 rounded px-3 py-1.5 text-xs text-white text-center">
+                        </div>
+                         <div class="flex gap-2">
+                            <input type="text" value="Calamidad" class="flex-1 bg-zinc-900 border border-zinc-800 rounded px-3 py-1.5 text-xs text-white" readonly>
+                            <input type="number" value="4" class="w-16 bg-zinc-900 border border-zinc-800 rounded px-3 py-1.5 text-xs text-white text-center">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-6 border-t border-zinc-800 bg-zinc-900 flex justify-end gap-3">
+            <button onclick="closeDrawer()" class="px-5 py-2.5 rounded-lg text-sm font-medium text-zinc-300 hover:text-white hover:bg-zinc-800 transition">Cancelar</button>
+            <button onclick="saveData()" class="px-5 py-2.5 rounded-lg text-sm font-medium bg-white text-black hover:bg-zinc-200 transition shadow-lg shadow-white/5 flex items-center gap-2">
+                <i class="ph-bold ph-floppy-disk"></i> Guardar Cambios
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // 1. IMPORT DATA (MOCK)
+        const KPIS = [
+            { id: 1, title: 'Proyección Usuarios', value: '342', sub: '/ 350', status: 'success', icon: 'ph-users-three', colSpan: 'col-span-1 md:col-span-2' },
+            { id: 2, title: 'Rotación Personal', value: '0.0%', sub: 'Mensual', status: 'neutral', icon: 'ph-arrows-left-right', colSpan: 'col-span-1' },
+            { id: 3, title: 'Seguridad (SST)', value: '0', sub: 'Accidentes', status: 'success', icon: 'ph-shield-check', colSpan: 'col-span-1' },
+            { id: 4, title: 'Ausentismos', value: '12', sub: 'Casos activos', status: 'warning', icon: 'ph-thermometer', colSpan: 'col-span-1 md:col-span-2 row-span-2' }, // Card grande
+            { id: 5, title: 'Cumplimiento Tareas', value: '87%', sub: 'Promedio', status: 'danger', icon: 'ph-list-checks', colSpan: 'col-span-1' },
+            { id: 6, title: 'Capacitaciones', value: '--', sub: 'Horas', status: 'neutral', icon: 'ph-graduation-cap', colSpan: 'col-span-1' },
+            { id: 7, title: 'Ideas de Mejora', value: '3', sub: 'Nuevas', status: 'neutral', icon: 'ph-lightbulb', colSpan: 'col-span-1' },
+            { id: 8, title: 'Vacaciones', value: '5', sub: 'Programadas', status: 'success', icon: 'ph-airplane-tilt', colSpan: 'col-span-1' },
+        ];
+
+        // 2. RENDER FUNCTIONS
+        const gridContainer = document.getElementById('kpi-grid');
+        
+        function renderGrid() {
+            gridContainer.innerHTML = '';
+            KPIS.forEach(kpi => {
+                const colorClass = getStatusColor(kpi.status);
+                const bgClass = kpi.status === 'warning' ? 'bg-amber-900/10 border-amber-900/30' : 
+                               (kpi.status === 'danger' ? 'bg-red-900/10 border-red-900/30' : 'bg-zinc-900 border-zinc-800');
+                
+                const card = document.createElement('div');
+                card.className = `${kpi.colSpan} ${bgClass} border rounded-2xl p-6 relative group hover:border-zinc-600 transition-all cursor-pointer flex flex-col justify-between overflow-hidden`;
+                card.onclick = () => openDrawer(kpi);
+
+                card.innerHTML = `
+                    <div class="flex justify-between items-start z-10">
+                        <div class="p-2 rounded-lg bg-zinc-950/50 border border-zinc-800 text-zinc-400 group-hover:text-white transition-colors">
+                            <i class="ph ${kpi.icon} text-xl"></i>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <span class="w-2 h-2 rounded-full ${colorClass}"></span>
+                            <span class="text-[10px] uppercase tracking-wider font-semibold text-zinc-500 group-hover:text-zinc-400">
+                                ${kpi.status === 'neutral' ? 'Pendiente' : 'Reportado'}
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="z-10 mt-4">
+                        <h3 class="text-zinc-400 text-sm font-medium group-hover:text-zinc-300">${kpi.title}</h3>
+                        <div class="flex items-baseline gap-2 mt-1">
+                            <span class="text-3xl font-bold text-white tracking-tight">${kpi.value}</span>
+                            <span class="text-sm text-zinc-500">${kpi.sub}</span>
+                        </div>
+                    </div>
+
+                    <div class="absolute -right-4 -bottom-4 opacity-0 group-hover:opacity-5 transition-opacity duration-500">
+                        <i class="ph-fill ${kpi.icon} text-9xl"></i>
+                    </div>
+                `;
+                gridContainer.appendChild(card);
+            });
+        }
+
+        function getStatusColor(status) {
+            if (status === 'success') return 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.4)]';
+            if (status === 'warning') return 'bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.4)]';
+            if (status === 'danger') return 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.4)]';
+            return 'bg-zinc-600';
+        }
+
+        // 3. DRAWER LOGIC
+        const drawerPanel = document.getElementById('drawer-panel');
+        const drawerBackdrop = document.getElementById('drawer-backdrop');
+        const drawerTitle = document.getElementById('drawer-title');
+        let activeKpi = null;
+
+        function openDrawer(kpi) {
+            activeKpi = kpi;
+            drawerTitle.innerText = `Gestionar: ${kpi.title}`;
+            drawerBackdrop.classList.add('open');
+            drawerPanel.classList.remove('drawer-enter');
+            drawerPanel.classList.add('drawer-open');
+        }
+
+        function closeDrawer() {
+            drawerPanel.classList.remove('drawer-open');
+            drawerPanel.classList.add('drawer-enter');
+            drawerBackdrop.classList.remove('open');
+            
+            // Simular limpieza de estado
+            setTimeout(() => {
+                activeKpi = null;
+            }, 300);
+        }
+
+        function saveData() {
+            // Simulación de "Optimistic UI"
+            const saveBtn = document.querySelector('button[onclick="saveData()"]');
+            const originalText = saveBtn.innerHTML;
+            
+            // Estado Loading
+            saveBtn.innerHTML = '<i class="ph ph-spinner animate-spin text-lg"></i> Guardando...';
+            
+            setTimeout(() => {
+                // Estado Success
+                saveBtn.classList.remove('bg-white', 'text-black');
+                saveBtn.classList.add('bg-emerald-500', 'text-white');
+                saveBtn.innerHTML = '<i class="ph-bold ph-check"></i> Guardado';
+
+                // Actualizar Grid (Simulado)
+                if(activeKpi) {
+                    activeKpi.status = 'success'; // Cambiar a verde
+                    activeKpi.value = 'Actualizado';
+                    renderGrid(); // Re-renderizar para ver cambio
+                }
+
+                setTimeout(() => {
+                    closeDrawer();
+                    // Reset botón
+                    setTimeout(() => {
+                        saveBtn.innerHTML = originalText;
+                        saveBtn.classList.add('bg-white', 'text-black');
+                        saveBtn.classList.remove('bg-emerald-500', 'text-white');
+                    }, 500);
+                }, 800);
+            }, 1000);
+        }
+
+        // Init
+        renderGrid();
+
+    </script>
+</body>
+</html>
