@@ -4,3 +4,9 @@
 
 [[plugins]]
   package = "@netlify/angular-runtime"
+
+# SPA Fallback: Redirigir todo al index.html para que Angular maneje las rutas
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
