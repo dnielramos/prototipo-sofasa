@@ -29,14 +29,28 @@
             <span class="text-xs font-medium text-gray-600">Febrero 2026</span>
         </div>
 
-        <!-- Back Button -->
-        <button (click)="backToProjects()"
-            class="flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-sofasa-blue-700 bg-sofasa-blue-50 hover:bg-sofasa-blue-100 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-            </svg>
-            Volver
-        </button>
+        <div class="flex items-center gap-3">
+            <!-- Diagram Button -->
+            <a href="https://kroki.io/mermaid/svg/eNqlVt1O40YUvu9TjBYtAmlTSJyEYFVbmdiwEQkBbFAlC1Vj-zgM63iiGZufLvsClXrVu0rVanvXi15U-wCVypv0CfoIPTN2nIQAoiKIZMae75s53_mbOOFX4TkVGfHsrwh-Xr8mjuv1-kOXnPbcE6vvuGTNO4cxEJuK9xtOmoGYCCZhXa8PEyqlDTGRmWKJWZKYK5txfatB38hM8PdgrhhBpxG3y2ntikXZudmYXL8JecKFuRLH8SLVJYOrkqkOjW0jqJiaW61We3uRqT5jggZ04s1FMhpmjKcl3cJJzJVGq21A8Cjd0sEiQa9AlFyNrca8kUADY7OzbGT5IKISZRb0xiQt0np0B5mHIUg51bG13a7MRTE2g-1O_fk6RkHJ0zSMTjg7attot-P6k2ZrIle5dG2tl7KQcbJB-nzE0vV10zQLZ9dqb0mXY0BcZ9z_99PPP6mQ8SxSN4kLCYQZFySCaskZApVrNbf-knkwEnRyTrrDA8_5zhsS_1W1XEE9QQN6wcmrM71efarXuPut3gYPl1JyKPiN2vJW7a0m_mFC04ziuaevnkECgvGo4BiA9PGfDCcgaMYu5-DlDmS1XKeV6HMa2TSjH7pUjKggDooU8Y8aBGlUSDpdpBE2xkTAqSjfVWrYlvtuZ2gd20oO1PXHUteGSXacA1Rp77hnk7UKvj6vT_XUP6QpJGg8S0M2oYnSc_-wJxfcULmizP0-l6S-SQZ3X6I8wbEVKsvlMrtW7pTJnCbsB3pL9ies7hdCh-zuS4raHPOM6vHZs-AN34VRLlhEI-K63vNAhm_lEtKMyTGedpWc0pAqV4J8Hr7pe1QAVVArjxhG7N0f9HnQlt-lE9ysNBIZBnDBBZ3buRrI7CYBrdG0rnXwb1bXjNiIm-1pAm43KRaqZXDjJWDjJeDmS8Ct_wmukkXrtVpYvlrYsFqcZrXgVU7pJix8jxiCjryADH2DCZvaulL7__zymViBYIK4CYugNrwEoeK_aAr30s6xe973g6HtlGn3a5l2Bpazfs92asNT55isORErHF4WEQyJhQScba-T_Jjn2DF3uRjLD3__dZTf_a6ykID89uODGbib5FjwXDaeJFA9nyMpSpZ-fUvUk2Lsq2GeUKxfqvLcfU4jqk0telbFNEOQ2tfI5FwATrhELqj7Vcpi1exFKi82Hkyp5QNbqrdJvCrQANsPOcwxKcsrwkMGlMsPzEFhhJ7P2xBiz-6es4nc8OhIPmKIRi3b0VgoChsoJjrpvglzeF28RywsDrEHsmxcxSFN8k0g3lojAVjVN45yTHhBPDbhT-oxoKACndgYkskTnjykkYDaO3bBCyG6XPnmel6KkqpWUj2iRQlcVsPwbZA4hbs_VRN_qMwt4KdqTE9S6GGqLjqGiKGiN8TTzbOXxgiEh2WwwkJxsstSmsCshcykxjSe3wmn89GJ5zjFahvRDPxiIMgxjFR0HcCII_ts4-lCLakjBBfYws_5lR76A476IdpKQGDrPek9AhzuI4pewk6W-ns5Vn3EdOk4QJvnisZCiSqXF_BJxsZMZiwkJxNFelv-nvTwdvTpN9VMi_4hpsWKUII1xXYUfXn107RT3L1rQqVxta1ytiVv0pC4-HVL7B1_bYdKUOGL9wx0lnvUV_Fb75AiNdd1_AT_ARHgxMg"
+                target="_blank"
+                class="flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-purple-700 bg-gradient-to-r from-purple-50 to-purple-100/50 border border-purple-200 hover:from-purple-100 hover:to-purple-200/50 hover:border-purple-300 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+                Ver Diagrama
+            </a>
+
+            <!-- Back Button -->
+            <button (click)="backToProjects()"
+                class="flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-sofasa-blue-700 bg-sofasa-blue-50 hover:bg-sofasa-blue-100 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                Volver
+            </button>
+        </div>
     </header>
 
     <div class="flex-1 flex overflow-hidden">
