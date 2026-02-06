@@ -13,7 +13,7 @@ import { MOCK_DB } from '../../../../../core/db/mock-db';
     template: `
     <form [formGroup]="form" (ngSubmit)="save()" class="space-y-4">
       
-      <div class="p-4 bg-blue-500/10 border border-blue-500/30 rounded-lg">
+      <div class="p-4 bg-blue-500/10 border border-blue-500/30 rounded-xl">
         <p class="text-sm text-blue-400">
           <i class="ph-bold ph-lightbulb mr-2"></i>
           Comparte tus ideas para mejorar los procesos. Tu contribución es valiosa.
@@ -30,12 +30,12 @@ import { MOCK_DB } from '../../../../../core/db/mock-db';
         [error]="form.get('descripcion')?.touched && form.get('descripcion')?.invalid ? 'Mínimo 50 caracteres' : ''">
       </app-ui-textarea>
 
-      <div class="flex items-center gap-2 text-xs text-zinc-500">
+      <div class="flex items-center gap-2 text-xs text-gray-600">
         <i class="ph ph-user"></i>
         <span>Registrado por: {{ getCurrentUser() }}</span>
       </div>
 
-      <div class="pt-4 border-t border-zinc-800 flex justify-end">
+      <div class="pt-4 border-t border-gray-200 flex justify-end">
         <button 
           type="submit" 
           [disabled]="isSaving || form.invalid"
@@ -50,18 +50,18 @@ import { MOCK_DB } from '../../../../../core/db/mock-db';
     <!-- Lista de Ideas Registradas -->
     <div class="mt-6 space-y-3">
       <div class="flex items-center justify-between">
-        <h3 class="text-sm font-medium text-zinc-400">Ideas Registradas ({{ ideas().length }})</h3>
+        <h3 class="text-sm font-medium text-gray-700">Ideas Registradas ({{ ideas().length }})</h3>
       </div>
 
-      <div *ngFor="let idea of ideas()" class="p-4 bg-zinc-900/50 border border-zinc-800 rounded-lg">
+      <div *ngFor="let idea of ideas()" class="p-4 bg-white border border-gray-200 rounded-xl">
         <p class="text-sm text-zinc-300 mb-2">{{ idea.descripcion }}</p>
-        <div class="flex items-center gap-4 text-xs text-zinc-500">
+        <div class="flex items-center gap-4 text-xs text-gray-600">
           <span><i class="ph ph-calendar-blank mr-1"></i>{{ idea.mes }}</span>
           <span><i class="ph ph-user mr-1"></i>{{ getUserName(idea.idUsuario) }}</span>
         </div>
       </div>
 
-      <div *ngIf="ideas().length === 0" class="text-center py-8 text-zinc-500">
+      <div *ngIf="ideas().length === 0" class="text-center py-8 text-gray-600">
         <i class="ph ph-lightbulb text-4xl mb-2 block"></i>
         <p class="text-sm">Aún no hay ideas registradas</p>
       </div>

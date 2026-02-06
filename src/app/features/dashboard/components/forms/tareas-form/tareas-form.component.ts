@@ -17,7 +17,7 @@ import { MOCK_DB } from '../../../../../core/db/mock-db';
       
       <!-- TABLA 13: Cumplimiento_Tareas_Plazos (ENCABEZADO) -->
       <div class="space-y-4">
-        <h4 class="text-xs font-bold text-zinc-500 uppercase tracking-wider border-b border-zinc-800 pb-2">
+        <h4 class="text-xs font-bold text-gray-600 uppercase tracking-wider border-b border-gray-200 pb-2">
             1. Encabezado de Evaluación
         </h4>
         
@@ -54,11 +54,11 @@ import { MOCK_DB } from '../../../../../core/db/mock-db';
 
       <!-- TABLA 14: Objetivos_Cumplimiento_Detalle (DETALLE HIJO) -->
       <div class="space-y-4 pt-2">
-        <div class="flex justify-between items-end border-b border-zinc-800 pb-2">
-            <h4 class="text-xs font-bold text-zinc-500 uppercase tracking-wider">
+        <div class="flex justify-between items-end border-b border-gray-200 pb-2">
+            <h4 class="text-xs font-bold text-gray-600 uppercase tracking-wider">
                 2. Informe Cualitativo (Detalle)
             </h4>
-            <span class="text-[10px] text-zinc-500" 
+            <span class="text-[10px] text-gray-600" 
                 [ngClass]="{'text-rose-500': form.get('informeMes')?.errors?.['minlength'] || form.get('informeMes')?.errors?.['maxlength']}">
                 Min 350 - Max 500 caracteres
             </span>
@@ -74,12 +74,12 @@ import { MOCK_DB } from '../../../../../core/db/mock-db';
             [error]="getInformeError()">
         </app-ui-textarea>
 
-        <p class="text-xs text-zinc-500 italic">
+        <p class="text-xs text-gray-600 italic">
             * Este informe se almacenará en la tabla de detalle vinculada.
         </p>
       </div>
 
-      <div class="pt-4 border-t border-zinc-800 flex justify-end">
+      <div class="pt-4 border-t border-gray-200 flex justify-end">
         <button 
           type="submit" 
           [disabled]="isSaving || form.invalid"
@@ -93,13 +93,13 @@ import { MOCK_DB } from '../../../../../core/db/mock-db';
 
     <!-- List View -->
     <div class="mt-6 space-y-3">
-      <h3 class="text-sm font-medium text-zinc-400">Evaluaciones ({{ tareas().length }})</h3>
+      <h3 class="text-sm font-medium text-gray-700">Evaluaciones ({{ tareas().length }})</h3>
 
-      <div *ngFor="let item of tareas()" class="p-4 bg-zinc-900/50 border border-zinc-800 rounded-lg">
+      <div *ngFor="let item of tareas()" class="p-4 bg-white border border-gray-200 rounded-xl">
         <div class="flex justify-between items-center mb-2">
             <div>
-                 <h4 class="font-medium text-white">{{ getUserName(item.idUsuario) }}</h4>
-                 <span class="text-xs text-zinc-500">{{ item.area }}</span>
+                 <h4 class="font-medium text-gray-900">{{ getUserName(item.idUsuario) }}</h4>
+                 <span class="text-xs text-gray-600">{{ item.area }}</span>
             </div>
             <span class="text-xl font-bold" [ngClass]="{
                 'text-emerald-500': item.promedioDesempeno >= 90,

@@ -51,7 +51,7 @@ import { CAT_TIPOS_SITUACION } from '../../../../../core/db/catalogs.db';
         [maxLength]="500">
       </app-ui-textarea>
 
-      <div class="pt-4 border-t border-zinc-800 flex justify-end">
+      <div class="pt-4 border-t border-gray-200 flex justify-end">
         <button 
           type="submit" 
           [disabled]="isSaving || form.invalid"
@@ -65,16 +65,16 @@ import { CAT_TIPOS_SITUACION } from '../../../../../core/db/catalogs.db';
 
     <!-- List View -->
     <div class="mt-6 space-y-3">
-      <h3 class="text-sm font-medium text-zinc-400">Casos ({{ situaciones().length }})</h3>
+      <h3 class="text-sm font-medium text-gray-700">Casos ({{ situaciones().length }})</h3>
 
-      <div *ngFor="let item of situaciones()" class="p-4 bg-zinc-900/50 border border-zinc-800 rounded-lg">
+      <div *ngFor="let item of situaciones()" class="p-4 bg-white border border-gray-200 rounded-xl">
         <div class="flex justify-between items-center mb-2">
           <div class="flex gap-2">
             <span *ngFor="let s of item.situacion" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-500/10 text-amber-500 border border-amber-500/20">
               {{ s }}
             </span>
           </div>
-          <span class="text-sm text-zinc-400">{{ item.cantidad }} casos</span>
+          <span class="text-sm text-gray-700">{{ item.cantidad }} casos</span>
         </div>
       </div>
     </div>

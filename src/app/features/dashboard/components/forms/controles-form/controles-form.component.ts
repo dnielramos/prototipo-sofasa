@@ -31,25 +31,29 @@ import { CumplimientoControles } from '../../../../../core/models/domain.models'
       </div>
     
       <!-- Calculated Percentage -->
-      <div class="p-4 rounded-xl bg-zinc-800/50 border border-zinc-700 flex justify-between items-center">
+      <div class="p-5 rounded-xl bg-gradient-to-br from-gray-50 to-gray-100/50 border-2 border-gray-200 flex justify-between items-center shadow-sm">
         <div>
-            <span class="text-sm text-zinc-400 block">Porcentaje Cumplimiento</span>
-            <span class="text-xs text-zinc-500">Objetivo: 100%</span>
+            <span class="text-sm font-bold text-gray-700 block">Porcentaje Cumplimiento</span>
+            <span class="text-xs text-gray-600 font-medium">Objetivo: 100%</span>
         </div>
         <span class="text-3xl font-bold tracking-tight" [ngClass]="{
-            'text-emerald-500': calculatedPercentage >= 98,
-            'text-yellow-500': calculatedPercentage >= 90 && calculatedPercentage < 98,
-            'text-rose-500': calculatedPercentage < 90
+            'text-emerald-600': calculatedPercentage >= 98,
+            'text-yellow-600': calculatedPercentage >= 90 && calculatedPercentage < 98,
+            'text-rose-600': calculatedPercentage < 90
         }">{{ calculatedPercentage.toFixed(2) }}%</span>
       </div>
     
-      <div class="pt-4 border-t border-zinc-800 flex justify-end">
+      <div class="pt-4 border-t border-gray-200 flex justify-end gap-3">
           <button 
             type="submit" 
             [disabled]="isSaving || form.invalid"
-            class="px-5 py-2.5 rounded-lg text-sm font-medium bg-white text-black hover:bg-zinc-200 transition shadow-lg shadow-white/5 flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
-            <i *ngIf="isSaving" class="ph ph-spinner animate-spin text-lg"></i>
-            <i *ngIf="!isSaving" class="ph-bold ph-shield-check"></i>
+            class="px-6 py-3 rounded-xl text-sm font-semibold bg-gradient-to-r from-sofasa-blue-500 to-sofasa-blue-600 text-white hover:from-sofasa-blue-600 hover:to-sofasa-blue-700 hover:shadow-blue-glow-lg transition-all duration-200 shadow-lg flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-lg">
+            <svg *ngIf="isSaving" class="w-5 h-5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+            <svg *ngIf="!isSaving" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
             {{ isSaving ? 'Guardando...' : 'Guardar Reporte' }}
           </button>
       </div>

@@ -60,7 +60,7 @@ import { CAT_TIPOS_AUSENTISMO } from '../../../../../core/db/catalogs.db';
         [maxLength]="500">
       </app-ui-textarea>
 
-      <div class="pt-4 border-t border-zinc-800 flex justify-end">
+      <div class="pt-4 border-t border-gray-200 flex justify-end">
         <button 
           type="submit" 
           [disabled]="isSaving || form.invalid"
@@ -74,18 +74,18 @@ import { CAT_TIPOS_AUSENTISMO } from '../../../../../core/db/catalogs.db';
 
     <!-- List View -->
     <div class="mt-6 space-y-3">
-      <h3 class="text-sm font-medium text-zinc-400">Registros ({{ ausentismos().length }})</h3>
+      <h3 class="text-sm font-medium text-gray-700">Registros ({{ ausentismos().length }})</h3>
 
-      <div *ngFor="let item of ausentismos()" class="p-4 bg-zinc-900/50 border border-zinc-800 rounded-lg">
+      <div *ngFor="let item of ausentismos()" class="p-4 bg-white border border-gray-200 rounded-xl">
         <div class="flex justify-between items-start mb-2">
           <div>
-            <h4 class="font-medium text-white">{{ getUserName(item.idUsuario) }}</h4>
+            <h4 class="font-medium text-gray-900">{{ getUserName(item.idUsuario) }}</h4>
             <div class="flex gap-2 mt-1">
                 <!-- Honors the Array Structure in display -->
                 <span *ngFor="let t of item.tipoAusentismo" class="text-xs px-2 py-0.5 bg-rose-500/10 text-rose-400 rounded-full border border-rose-500/20">{{ t }}</span>
             </div>
           </div>
-          <span class="text-xl font-bold text-white">{{ item.diasTotalAusencia }} <span class="text-xs font-normal text-zinc-500">días</span></span>
+          <span class="text-xl font-bold text-gray-900">{{ item.diasTotalAusencia }} <span class="text-xs font-normal text-gray-600">días</span></span>
         </div>
       </div>
     </div>

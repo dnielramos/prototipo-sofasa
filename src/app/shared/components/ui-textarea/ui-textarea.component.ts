@@ -15,7 +15,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule, FormsModu
     ],
     template: `
     <div class="group">
-      <label *ngIf="label()" class="block text-xs font-medium text-zinc-500 mb-1 group-focus-within:text-blue-500 transition-colors">
+      <label *ngIf="label()" class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2 group-focus-within:text-sofasa-blue-600 transition-colors">
         {{ label() }}
       </label>
       <textarea
@@ -25,13 +25,15 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule, FormsModu
         (input)="onInput($event)"
         (blur)="onTouched()"
         [disabled]="disabled"
-        class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all placeholder-zinc-700 disabled:opacity-50 disabled:cursor-not-allowed resize-none"
+        class="w-full bg-white border-2 border-gray-300 rounded-xl px-4 py-3 text-sm text-gray-900 font-medium placeholder-gray-400 focus:outline-none focus:border-sofasa-blue-500 focus:ring-4 focus:ring-sofasa-blue-50 hover:border-gray-400 transition-all resize-none shadow-sm focus:shadow-md disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50"
         [class.border-red-500]="error()"
+        [class.focus:border-red-500]="error()"
+        [class.focus:ring-red-50]="error()"
       ></textarea>
       
-      <div class="flex justify-between items-center mt-1">
-         <p class="text-xs text-red-500 h-4">{{ error() }}</p>
-         <span *ngIf="showCounter()" class="text-[10px] text-zinc-600">
+      <div class="flex justify-between items-center mt-1.5">
+         <p class="text-xs text-red-600 font-medium h-4">{{ error() }}</p>
+         <span *ngIf="showCounter()" class="text-xs font-medium" [class.text-gray-500]="value?.length < maxLength()" [class.text-red-600]="value?.length >= maxLength()">
             {{ value?.length || 0 }} / {{ maxLength() }}
          </span>
       </div>
