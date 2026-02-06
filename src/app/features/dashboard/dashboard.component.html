@@ -2,23 +2,25 @@
 
     <!-- Header -->
     <header
-        class="h-16 border-b border-gray-200 bg-white/95 backdrop-blur-md flex items-center justify-between px-6 z-20 shrink-0 shadow-sm">
+        class="h-20 border-b border-gray-200/60 bg-white/80 backdrop-blur-xl flex items-center justify-between px-8 z-20 shrink-0 shadow-sm sticky top-0">
         <div class="flex items-center gap-4">
-            <div class="w-9 h-9 bg-sofasa-blue rounded-lg flex items-center justify-center shadow-md">
-                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div
+                class="w-11 h-11 bg-gradient-to-br from-sofasa-blue-500 to-sofasa-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-sofasa-blue/30">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                 </svg>
             </div>
             <div>
-                <h1 class="text-sm font-bold tracking-wide text-gray-900">SOFASA <span
-                        class="text-gray-500 font-normal">| MANAGEMENT</span></h1>
+                <h1 class="text-base font-bold tracking-wide text-gray-900">SOFASA <span
+                        class="text-gray-500 font-medium ml-1">Management</span></h1>
             </div>
         </div>
 
         <!-- Project Context -->
-        <div class="hidden md:flex items-center gap-3 bg-gray-100 border border-gray-200 rounded-full px-4 py-2">
-            <svg class="w-4 h-4 text-sofasa-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div
+            class="hidden md:flex items-center gap-3 bg-gradient-to-r from-gray-50 to-gray-100/50 border border-gray-200 rounded-full px-5 py-2.5 shadow-sm">
+            <svg class="w-4 h-4 text-sofasa-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
             </svg>
@@ -29,11 +31,11 @@
 
         <!-- Back Button -->
         <button (click)="backToProjects()"
-            class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-sofasa-blue hover:bg-blue-50 rounded-lg transition-colors">
+            class="flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-sofasa-blue-700 bg-sofasa-blue-50 hover:bg-sofasa-blue-100 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
-            Volver a Proyectos
+            Volver
         </button>
     </header>
 
@@ -41,7 +43,7 @@
         <!-- Sidebar (Minimal) -->
         <aside
             class="w-16 border-r border-gray-200 flex flex-col items-center py-6 gap-6 bg-white hidden md:flex shrink-0">
-            <button class="p-2 rounded-xl bg-blue-50 text-sofasa-blue">
+            <button class="p-2 rounded-xl bg-sofasa-blue-50 text-sofasa-blue-600 shadow-sm">
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
                     <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
@@ -56,26 +58,31 @@
         </aside>
 
         <!-- Main Content -->
-        <main class="flex-1 overflow-y-auto p-4 md:p-8 relative bg-gray-50">
-            <div class="max-w-7xl mx-auto pb-10">
+        <main class="flex-1 overflow-y-auto bg-gray-50">
+            <div class="max-w-7xl mx-auto px-8 py-12">
 
                 <!-- Page Title -->
-                <div class="flex justify-between items-end mb-8">
+                <div class="flex justify-between items-start mb-12">
                     <div>
-                        <h2 class="text-2xl font-semibold text-gray-900">Resumen Mensual</h2>
-                        <p class="text-sm text-gray-600 mt-1">Gestione las métricas operativas y de RRHH.</p>
+                        <h2 class="text-3xl font-bold text-gray-900 mb-2">Resumen Mensual</h2>
+                        <p class="text-base text-gray-600">Gestione las métricas operativas y de RRHH.</p>
                     </div>
                     <div class="flex gap-3">
                         <!-- Status indicator -->
                         <div
-                            class="px-3 py-1.5 rounded-full border border-gray-200 bg-white text-xs text-gray-700 flex items-center gap-2 shadow-sm">
-                            <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Online
+                            class="px-4 py-2 rounded-full border border-green-200 bg-gradient-to-r from-green-50 to-emerald-50/50 text-sm text-green-700 flex items-center gap-2.5 shadow-sm">
+                            <span class="relative flex h-3 w-3">
+                                <span
+                                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                            </span>
+                            Sistema Activo
                         </div>
                     </div>
                 </div>
 
                 <!-- Bento Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[160px]">
+                <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-[180px]">
                     @for (item of kpis(); track item.id) {
                     <div [class]="item.colSpan + (item.rowSpan ? ' ' + item.rowSpan : '')" (click)="openDrawer(item)">
                         <app-kpi-card [title]="item.title" [value]="item.value" [subValue]="item.subValue"

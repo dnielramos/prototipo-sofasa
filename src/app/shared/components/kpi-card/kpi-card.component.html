@@ -1,30 +1,113 @@
-<div class="h-full border rounded-xl p-6 relative group hover:border-sofasa-blue hover:shadow-sofasa-md transition-all flex flex-col justify-between overflow-hidden"
-    [ngClass]="bgClasses()" [class.cursor-pointer]="clickable()">
+<div class="
+    relative overflow-hidden
+    h-full
+    bg-gradient-to-br from-white to-gray-50/30
+    border border-gray-200/60
+    rounded-2xl
+    p-6
+    shadow-sofasa-sm
+    hover:shadow-card-hover
+    hover:border-sofasa-blue/40
+    hover:scale-[1.02]
+    transition-all duration-300
+    flex flex-col justify-between
+    group
+    " [class.cursor-pointer]="clickable()">
 
-    <div class="flex justify-between items-start z-10">
-        <div
-            class="p-2.5 rounded-lg bg-sofasa-100 border border-sofasa-200 text-sofasa-600 group-hover:text-sofasa-blue transition-colors">
+    <!-- Glow effect on hover -->
+    <div class="
+        absolute inset-0
+        opacity-0 group-hover:opacity-100
+        bg-gradient-to-br from-sofasa-blue-50/40 via-transparent to-transparent
+        transition-opacity duration-300
+        pointer-events-none
+    "></div>
+
+    <!-- Content Header -->
+    <div class="flex justify-between items-start z-10 relative">
+        <!-- Icon Container -->
+        <div class="
+            relative
+            p-3
+            rounded-xl
+            bg-gradient-to-br from-sofasa-blue-50 to-sofasa-blue-100/50
+            border border-sofasa-blue-200/50
+            text-sofasa-blue-600
+            group-hover:text-sofasa-blue-700
+            group-hover:shadow-blue-glow
+            group-hover:scale-105
+            transition-all duration-300
+        ">
             <i [class]="'ph-fill ' + icon() + ' text-2xl'"></i>
         </div>
-        <div class="flex items-center gap-1.5">
-            <span class="w-2 h-2 rounded-full" [ngClass]="statusClasses()"></span>
-            <span class="text-[10px] uppercase tracking-wider font-semibold text-gray-500 group-hover:text-gray-700">
+
+        <!-- Status Badge -->
+        <div class="flex items-center gap-2">
+            <span class="
+                w-2.5 h-2.5
+                rounded-full
+                shadow-sm
+            " [ngClass]="statusClasses()"></span>
+            <span class="
+                text-[10px]
+                uppercase
+                tracking-wider
+                font-bold
+                text-gray-500
+                group-hover:text-gray-700
+                transition-colors duration-200
+            ">
                 {{ statusText() }}
             </span>
         </div>
     </div>
 
-    <div class="z-10 mt-6">
-        <h3 class="text-gray-600 text-sm font-medium group-hover:text-gray-700 mb-1.5">{{ title() }}</h3>
-        <div class="flex items-baseline gap-2">
-            <span class="text-3xl font-bold text-gray-900 tracking-tight">{{ value() }}</span>
-            <span class="text-sm text-gray-500" *ngIf="subValue()">{{ subValue() }}</span>
+    <!-- Content Body -->
+    <div class="z-10 relative mt-auto pt-6">
+        <h3 class="
+            text-gray-600
+            text-sm
+            font-medium
+            group-hover:text-gray-700
+            mb-2
+            transition-colors duration-200
+        ">
+            {{ title() }}
+        </h3>
+        <div class="flex items-baseline gap-2.5">
+            <span class="
+                text-4xl
+                font-bold
+                text-gray-900
+                tracking-tight
+                group-hover:text-sofasa-blue-900
+                transition-colors duration-300
+            ">
+                {{ value() }}
+            </span>
+            <span class="
+                text-sm
+                font-medium
+                text-gray-500
+                group-hover:text-gray-600
+                transition-colors duration-200
+            " *ngIf="subValue()">
+                {{ subValue() }}
+            </span>
         </div>
     </div>
 
-    <!-- Background Icon -->
-    <div
-        class="absolute -right-6 -bottom-6 text-gray-100 group-hover:text-gray-200 transition-all duration-500 pointer-events-none">
-        <i [class]="'ph-fill ' + icon() + ' text-8xl'"></i>
+    <!-- Background Icon (Decorative) -->
+    <div class="
+        absolute
+        -right-8 -bottom-8
+        text-gray-100/60
+        group-hover:text-gray-200
+        group-hover:scale-110
+        transition-all duration-500
+        pointer-events-none
+        z-0
+    ">
+        <i [class]="'ph-fill ' + icon() + ' text-9xl'"></i>
     </div>
 </div>
